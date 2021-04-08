@@ -1,12 +1,12 @@
-package com.dsosedov.filepathapi.repositories;
+package com.dsosedov.filepathapi.components;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-@Repository
-public class FileRepository {
+@Component
+public class FileComponent {
 
     public Boolean exists(String path) {
         return Files.exists(Path.of(path));

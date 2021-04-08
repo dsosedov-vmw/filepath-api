@@ -1,6 +1,6 @@
 package com.dsosedov.filepathapi.services;
 
-import com.dsosedov.filepathapi.repositories.FileRepository;
+import com.dsosedov.filepathapi.components.FileComponent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +17,12 @@ public class FilePathServiceTests {
     @Autowired
     private FilePathService filePathService;
 
-    private FileRepository fileRepository;
+    private FileComponent fileComponent;
 
     @BeforeEach
     void setUp() {
-        fileRepository = mock(FileRepository.class);
-        filePathService.setFileRepository(fileRepository);
+        fileComponent = mock(FileComponent.class);
+        filePathService.setFileComponent(fileComponent);
     }
 
     @Test
@@ -37,19 +37,19 @@ public class FilePathServiceTests {
 
     @Test
     void validate_notNfs() {
-        assertEquals("The file path does not belong to the NFS mount.", filePathService.validate("/nt2/dirA"));
+        assertEquals("The file path does not belong to the NFS mount.", filePathService.validate("/n2/dirA"));
     }
 
     @Test
     void validate_invalid() {
-        when(fileRepository.exists(any(String.class))).thenReturn(false);
-        assertEquals("The file path is invalid.", filePathService.validate("src/test/resources/dirA"));
+        when(fileComponent.exists(any(String.class))).thenReturn(false);
+        assertEquals("The file path is invalid.", filePathService.validate("/n1/dirA"));
     }
 
     @Test
     void validate_valid() {
-        when(fileRepository.exists(any(String.class))).thenReturn(true);
-        assertEquals("", filePathService.validate("src/test/resources/dirB"));
+        when(fileComponent.exists(any(String.class))).thenReturn(true);
+        assertEquals("", filePathService.validate("/n1/dirB"));
     }
 
 }

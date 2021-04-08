@@ -10,14 +10,14 @@ import java.util.Objects;
 @Service
 public class FilePathService {
 
-    @Value("${nfsMount}")
-    private String nfsMount;
+    private final String nfsMount;
 
     @Setter
     private FileRepository fileRepository;
 
-    public FilePathService(FileRepository fileRepository) {
+    public FilePathService(FileRepository fileRepository, @Value("${nfsMount}") String nfsMount) {
         this.fileRepository = fileRepository;
+        this.nfsMount = nfsMount;
     }
 
     public String validate(String path) {

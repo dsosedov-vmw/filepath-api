@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -35,6 +36,13 @@ class FilepathApiApplicationTests {
                 .perform(get("/api/v1/filepath/valid?path=/nt1/dirA"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("foobar"));
+    }
+
+    @Test
+    void filePath_valid_bad_request() throws Exception {
+        mockMvc
+                .perform(get("/api/v1/filepath/valid"))
+                .andExpect(status().isBadRequest());
     }
 
 }

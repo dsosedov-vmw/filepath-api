@@ -1,7 +1,6 @@
 package com.dsosedov.filepathapi.services;
 
 import com.dsosedov.filepathapi.components.FileComponent;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,6 @@ public class FilePathService {
 
     private final String nfsMount;
 
-    @Setter
     private FileComponent fileComponent;
 
     public FilePathService(FileComponent fileComponent, @Value("${nfs.mount}") String nfsMount) {

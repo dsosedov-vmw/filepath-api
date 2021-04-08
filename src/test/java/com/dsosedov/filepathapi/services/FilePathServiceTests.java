@@ -3,18 +3,14 @@ package com.dsosedov.filepathapi.services;
 import com.dsosedov.filepathapi.components.FileComponent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
 public class FilePathServiceTests {
 
-    @Autowired
     private FilePathService filePathService;
 
     private FileComponent fileComponent;
@@ -22,7 +18,7 @@ public class FilePathServiceTests {
     @BeforeEach
     void setUp() {
         fileComponent = mock(FileComponent.class);
-        filePathService.setFileComponent(fileComponent);
+        filePathService = new FilePathService(fileComponent, "n1");
     }
 
     @Test

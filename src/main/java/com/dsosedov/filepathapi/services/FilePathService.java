@@ -11,7 +11,7 @@ public class FilePathService {
 
     private final String nfsMount;
 
-    private FileComponent fileComponent;
+    private final FileComponent fileComponent;
 
     public FilePathService(FileComponent fileComponent, @Value("${nfs.mount}") String nfsMount) {
         this.fileComponent = fileComponent;
